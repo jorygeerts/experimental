@@ -21,6 +21,16 @@ $eem->registerExtension(UserEntity::class, BirthdayModule\UserWithBirthdayEntity
 
 $extendedUser = $eem->getExtendedEntity(UserEntity::class);
 
+$extendedUser->setUsername('kermit');
+$extendedUser->setBirthday(\DateTime::createFromFormat('Y-m-d', '1955-5-9'));
+
+celebrate($extendedUser);
+
+function celebrate(\BirthdayModule\UserWithBirthdayEntity $user)
+{
+    echo $user->getBirthdayGreeting(new \DateTime());
+}
+
 var_dump($extendedUser);
 
 

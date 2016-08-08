@@ -14,9 +14,21 @@ namespace BirthdayModule;
 interface UserWithBirthdayEntity extends \UserEntity
 {
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getBirthday();
+
+    /**
+     * @param \DateTime $birthday
+     * @return void
+     */
+    public function setBirthday(\DateTime $birthday);
+
+    /**
+     * @param \DateTime $currentDay
+     * @return string
+     */
+    public function getBirthdayGreeting(\DateTime $currentDay);
 }
 
 /**
@@ -25,15 +37,36 @@ interface UserWithBirthdayEntity extends \UserEntity
 trait UserWithBirthdayEntityTrait
 {
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     protected $birthday;
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getBirthday()
     {
         return $this->birthday;
+    }
+
+    /**
+     * @param \DateTime $birthday
+     */
+    public function setBirthday(\DateTime $birthday)
+    {
+        $this->birthday = $birthday;
+    }
+
+    /**
+     * @param \DateTime $currentDay
+     * @return string
+     */
+    public function getBirthdayGreeting(\DateTime $currentDay)
+    {
+        if ($this->birthday->format('m-d') == $currentDay->format('m-d')) {
+            return "Go " . $this->getUsername() . ", its your birthday! We gon' party like its your birthday!";
+        }
+
+        return "To bad, " . $this->getUsername() . " their birthday is on " . $this->getBirthday()->format('m-d') . ". :(";
     }
 }

@@ -17,6 +17,24 @@ interface UserEntity extends IdentifiableEntity
      * @return string
      */
     public function getPasswordHash();
+
+    /**
+     * @param string $username
+     * @return void
+     */
+    public function setUsername($username);
+
+    /**
+     * @param string $emailAddress
+     * @return void
+     */
+    public function setEmailAddress($emailAddress);
+
+    /**
+     * @param string $passwordHash
+     * @return void
+     */
+    public function setPasswordHash($passwordHash);
 }
 
 /**
@@ -53,12 +71,28 @@ trait UserEntityTrait
     {
         return $this->passwordHash;
     }
-}
 
-///**
-// * Class UserEntityImplementation is the standard implementation for a user.
-// */
-//class UserEntityImplementation implements UserEntity
-//{
-//    use IdentifiableEntityTrait, UserEntityTrait;
-//}
+    /**
+     * @param string $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @param string $emailAddress
+     */
+    public function setEmailAddress($emailAddress)
+    {
+        $this->emailAddress = $emailAddress;
+    }
+
+    /**
+     * @param string $passwordHash
+     */
+    public function setPasswordHash($passwordHash)
+    {
+        $this->passwordHash = $passwordHash;
+    }
+}
